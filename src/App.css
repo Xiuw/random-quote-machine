@@ -1,33 +1,74 @@
-.App {
-  text-align: center;
+
+
+#quote-box{
+  display:flex;
+  justify-content:center;
+  width:500px;
+  border:red solid,2px;
+  margin-left:auto;
+  margin-right:auto; 
+  margin-top:100px;
+
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
+.quoteCSS{
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background:white;
+  border:solid 1px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction:column;
+  padding:40px;
+  align-self: center;
+  
 }
 
-.App-link {
-  color: #61dafb;
+
+#text{
+  font-size:24px;
+  font-weight:bold;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#author{
+  font-size:20px;
+  color:black;
+  text-align:right;
+  padding-right:5px;
+
 }
+
+
+#new-quote{
+       
+     background-color: #EB783D;
+     color: White;
+     padding:10px;
+     font-size:16px;
+     cursor:pointer;
+   /*  box-shadow:5px 5px 5px rgba(68, 68, 68, 0.6);*/
+     border:none;
+     opacity:1;
+     float:right;
+    
+} 
+
+
+#new-quote:hover{
+  opacity:0.6;
+}
+
+.showEffect{
+  
+    animation: fadeOut 2s ;
+    
+}
+
+@-webkit-keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+@keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
