@@ -1,10 +1,19 @@
+*{
+  margin:0;
+  padding:0;
+}
+.App{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
 
-
+}
 #quote-box{
   display:flex;
   justify-content:center;
   width:500px;
   border:red solid,2px;
+/*  box-shadow:10px 10px 10px rgba(68, 68, 68, 0.6);*/
   margin-left:auto;
   margin-right:auto; 
   margin-top:100px;
@@ -13,11 +22,12 @@
 
 .quoteCSS{
 
-  background:white;
+/*  background:white;*/
   border:solid 1px;
   display: flex;
   flex-direction:column;
   padding:40px;
+  box-shadow: 2px,5px;
   align-self: center;
   
 }
@@ -37,16 +47,15 @@
 }
 
 
-#new-quote{
-       
-     background-color: #EB783D;
+#new-quote{  
+     background-color:transparent;
      color: White;
      padding:10px;
      font-size:16px;
      cursor:pointer;
-   /*  box-shadow:5px 5px 5px rgba(68, 68, 68, 0.6);*/
+     box-shadow:5px 5px 5px rgba(68, 68, 68, 0.6);
      border:none;
-     opacity:1;
+/*     opacity:1;*/
      float:right;
     
 } 
@@ -57,9 +66,7 @@
 }
 
 .showEffect{
-  
-    animation: fadeOut 2s ;
-    
+    animation: fadeOut 2s ;    
 }
 
 @-webkit-keyframes fadeOut {
@@ -71,4 +78,16 @@
     from {opacity: 1;}
     to {opacity: 0;}
 }
-
+.submit{
+  width:100px;
+  background-color:transparent;
+  padding:10px;
+  margin:20px;
+  font-size:20px;
+}
+.textArea{
+  margin:20px;
+  padding:10px;
+  width:500px;
+  background-color:transparent;
+}
