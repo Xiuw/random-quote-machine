@@ -1,93 +1,106 @@
-*{
-  margin:0;
-  padding:0;
-}
 .App{
   display:flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 
 }
+
+/********
+Nav 
+*********/
+
+.nav{
+  margin: 50px 0 50px 0;
+  cursor:pointer;
+  font-size:20px;
+  text-align:center;
+  color:white;
+}
+.nav:hover{
+  text-decoration: underline;
+  color:black;
+}
+
+/**********************
+Main page - Quote box 
+**********************/
 #quote-box{
   display:flex;
+  flex-direction: column;
+  align-items:center;
   justify-content:center;
   width:500px;
-  border:red solid,2px;
-/*  box-shadow:10px 10px 10px rgba(68, 68, 68, 0.6);*/
-  margin-left:auto;
-  margin-right:auto; 
-  margin-top:100px;
-
+  /*margin-left:auto;
+  margin-right:auto; */
 }
-
 .quoteCSS{
-
-/*  background:white;*/
-  border:solid 1px;
+  border:solid 1px white;
   display: flex;
   flex-direction:column;
   padding:40px;
   box-shadow: 2px,5px;
-  align-self: center;
-  
+  align-self: center; 
+  box-shadow: inset 0 0 30px #FFFF;
 }
-
 
 #text{
   font-size:24px;
-  font-weight:bold;
+  text-align:center;
+  line-height: 1.4;
+  font-family:'';
 }
 
 #author{
-  font-size:20px;
+  font-size:16px;
   color:black;
-  text-align:right;
-  padding-right:5px;
+  text-align:center;
+  padding-top:20px;
 
 }
 
-
-#new-quote{  
-     background-color:transparent;
-     color: White;
-     padding:10px;
-     font-size:16px;
-     cursor:pointer;
-     box-shadow:5px 5px 5px rgba(68, 68, 68, 0.6);
-     border:none;
-/*     opacity:1;*/
-     float:right;
-    
-} 
-
-
-#new-quote:hover{
-  opacity:0.6;
+/******************************
+Submit new quote section
+*******************************/
+.formCSS{
+  display:flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.input-section{
+  display:flex;
+  flex-direction:column;
+}
+.inputArea{
+   background-color:transparent;
+   font-size:20px;
+   border:white 1px solid;
+   width:500px;
+   box-shadow: inset 0 0 30px #FFFF;
+}
+label{
+  font-size:16px;
+  padding:10px 0 10px 0;
 }
 
-.showEffect{
-    animation: fadeOut 2s ;    
-}
 
-@-webkit-keyframes fadeOut {
-    from {opacity: 1;}
-    to {opacity: 0;}
-}
 
-@keyframes fadeOut {
-    from {opacity: 1;}
-    to {opacity: 0;}
-}
-.submit{
+
+/****************************************
+Submit button - on Submit new quote page
+*****************************************/
+.btn-quote{
   width:100px;
   background-color:transparent;
   padding:10px;
   margin:20px;
-  font-size:20px;
+  border:none;
+  box-shadow: inset 0 0 30px #FFFF;
+  font-size:14px;
 }
-.textArea{
-  margin:20px;
-  padding:10px;
-  width:500px;
-  background-color:transparent;
+
+.btn-quote:hover{
+  opacity:0.6;
 }
+

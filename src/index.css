@@ -1,12 +1,7 @@
-
-
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Shadows Into Light', cursive;
-  background-image: linear-gradient(to bottom, #f5a57c, #f8919a, #df8abf, #a88fda, #4e97de) ;
-  background-attachment: fixed;
-
-
+  font-family: Arial, sans-serif;
+  background:url('https://pics.freeartbackgrounds.com/fullhd/Sea_Wave_on_Sand_Background-1229.jpg') no-repeat fixed;
 
 }
