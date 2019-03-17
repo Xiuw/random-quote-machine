@@ -2,6 +2,6 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background:url('https://pics.freeartbackgrounds.com/fullhd/Sea_Wave_on_Sand_Background-1229.jpg') no-repeat fixed;
-
+  background: linear-gradient(to bottom right, #66ccff 0%, #ffcc00 100%) no-repeat;
+  background-attachment: fixed;
 }

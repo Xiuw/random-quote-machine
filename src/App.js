@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import DisplayData from './DisplayData';
 import { SocialIcon } from 'react-social-icons';
-
 import './App.css';
 
-class App extends Component {
+
+class App extends Component{
 
 	constructor(){
 		super();
@@ -14,11 +14,13 @@ class App extends Component {
 			inputAuthor:'',
 			random:Math.floor(Math.random() * 10),
 			route:'main',
-			message:''
+			message:'',
+			fadeIn:false,
+			
 		}	
 	} 
 	componentDidMount(){ //fetch data from the database
-		fetch('http://localhost:3000/getQuote')
+		fetch('https://intense-reef-85189.herokuapp.com/getQuote')
 		.then(response=>response.json())
 		.then(data=> {
 			this.setState({data})
@@ -30,9 +32,9 @@ class App extends Component {
 		 	do{
 		 	 random =  Math.floor(Math.random() * this.state.data.length);
 		 	}while(random === this.state.random)
- 		this.setState({random});  
+ 		this.setState({random:random, fadeIn:true
+ 		});  
 	 }
-
 
 	onHandleChange=(e)=>{
 		const {name,value} = e.target
@@ -40,7 +42,7 @@ class App extends Component {
 	}
 
 	onHandleSubmit = (e) => { //Handle submit new quote to the database
-		fetch('http://localhost:3000/submitQuote',{
+		fetch('https://intense-reef-85189.herokuapp.com/submitQuote',{
 			method:'post',
 			headers:{'Content-Type':'Application/json'},
 			body:JSON.stringify({
@@ -53,7 +55,7 @@ class App extends Component {
 			route:'other',
 			inputQuote:'',
 			inputAuthor:'',
-			message:'**Your quote has been Submitted, you can choose to return or submit a new quote'
+			message:'**Your quote has been sucessfully submitted, you can choose to return or submit a new quote.'
 		})
 	}
 	onHandleRoute=(e)=>{
@@ -70,35 +72,50 @@ class App extends Component {
 
 	 
 	render() {
-	  	const{random , inputQuote, inputAuthor,route,message} = this.state;
+	  	const{random , inputQuote, inputAuthor,route,message,fadeIn} = this.state;
 	  	const filteredQuote = this.state.data.filter((n,i )=> i===random ? n : null);
-
+	 
 	    return (
 	    <div className='App'> 
 	    	{
-	    	route === 'main' ? //condition statement
+	    	route === 'main' ? //condition statement which page to render(main or submit form)
 	    	<div>
+	    	
 		    	<div id='quote-box'>
-		    		<p className='nav' onClick={this.onHandleRoute}>Submit New Quote</p>
+		    		<p className='nav' onClick={this.onHandleRoute}>Share a new quote</p>
 			   		<div className='quoteCSS'>
-				   		<SocialIcon 
-				   			id='tweet-quote'
-				   			bgColor="#38A1F3" 
-				   			fgColor="fff" 
-				   			style={{ height: 30, width: 30 }} 
-				   			network="twitter" 
-				   			url='http://twitter.com/intent/tweet'/>
-						<DisplayData quoteData ={filteredQuote}/>
+			   			<div 
+			   			className={fadeIn?'effect_fade':''}
+				   		onAnimationEnd={() => this.setState({ fadeIn: false })}>
+					   		<SocialIcon 
+					   			id='tweet-quote'
+					   			bgColor="#38A1F3" 
+					   			fgColor="fff" 
+					   			style={{ height: 30, width: 30, }} 
+					   			network="twitter" 
+					   			url='http://twitter.com/intent/tweet'
+
+					   			/>
+				   		
+							<DisplayData   quoteData ={filteredQuote}/>
+						</div>
 				 	</div>
-				 	<p><button id='new-quote' className = 'btn-quote'onClick={this.handleClick}>New Quote</button></p>
-			  	</div>
+				 	 
+				 	<p><button 
+					 	id='new-quote' 
+					 	className = 'btn-quote' 
+					 	onClick={this.handleClick}>New Quote
+				 	</button></p>
+
+			  	</div>	
+		
 		  	</div>
 		  	:
 		  	<div>
 		      	
 		    	<div className='formCSS'>
-		    	<p className='nav'onClick={this.onHandleRoute}> Return to Main</p>
-		    	<p>{message}</p>	
+		    	<p className='nav'onClick={this.onHandleRoute}> Return to main</p>
+		    	<p className="msg">{message}</p>	
 		    	 	<p>*Submit your quote information below....</p>
 		    	 	
 		    	 	<div className ='input-section'>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DisplayData = ({quoteData}) =>{
+const DisplayData = ({quoteData,fontSize}) =>{
 	// console.log(quoteData);
 	return(
 		quoteData.map((n,i)=>{

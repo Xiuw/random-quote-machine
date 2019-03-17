@@ -48,7 +48,7 @@ Main page - Quote box
   font-size:24px;
   text-align:center;
   line-height: 1.4;
-  font-family:'';
+  font-family:Helvetica;
 }
 
 #author{
@@ -56,6 +56,7 @@ Main page - Quote box
   color:black;
   text-align:center;
   padding-top:20px;
+  font-family:Helvetica;
 
 }
 
@@ -84,8 +85,10 @@ label{
   padding:10px 0 10px 0;
 }
 
-
-
+.msg{
+  color:white;
+  font-weight:bold;
+}
 
 /****************************************
 Submit button - on Submit new quote page
@@ -103,4 +106,18 @@ Submit button - on Submit new quote page
 .btn-quote:hover{
   opacity:0.6;
 }
+/**************
+Animation class
+*****************/
 
+.effect_fade{
+  animation:fadeIn 3s;
+  animation-timing-function: ease-in;
+
+}
+
+@keyframes fadeIn {
+  0%   {opacity: 0; }
+  50%  {opacity: .5 ;}
+  100% { opacity: 1; }
+}
