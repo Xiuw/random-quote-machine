@@ -60,7 +60,6 @@ class SubmitNewQuote extends Component {
 		     	<input 
 		     		className='inputArea' 
 		     		type='text'
-		     	
 		     		placeholder="Author or source"
 		     		name ='inputAuthor' 
 		     		value={inputAuthor} 

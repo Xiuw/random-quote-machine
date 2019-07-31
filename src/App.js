@@ -53,12 +53,11 @@ class App extends Component{
 			   			<div 
 			   			className={fadeIn?'effect_fade':''}
 				   		onAnimationEnd={() => this.setState({ fadeIn: false })}>
-					   		<p 
-					   			id='tweet-quote'
-					   			
-					   			url='http://twitter.com/intent/tweet'><i class="fab fa-twitter"></i>
-
-					   			</p>   		
+					   		<a id='tweet-quote'
+					   		   href='http://twitter.com/intent/tweet'
+					   		   style={{color:'#1da1f2',fontSize:'25px'}}>
+					   		   <i className="fab fa-twitter-square"></i>
+					   		</a>   		
 							<DisplayData quoteData ={random}/>
 						</div>
 				 	</div>
