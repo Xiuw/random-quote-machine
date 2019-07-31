@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import DisplayData from './components/DisplayData';
-import { SocialIcon } from 'react-social-icons';
 import SubmitNewQuote from './components/SubmitNewQuote';
 import './App.css';
 
@@ -54,15 +53,12 @@ class App extends Component{
 			   			<div 
 			   			className={fadeIn?'effect_fade':''}
 				   		onAnimationEnd={() => this.setState({ fadeIn: false })}>
-					   		<SocialIcon 
+					   		<p 
 					   			id='tweet-quote'
-					   			bgColor="#38A1F3" 
-					   			fgColor="fff" 
-					   			style={{ height: 30, width: 30, }} 
-					   			network="twitter" 
-					   			url='http://twitter.com/intent/tweet'
+					   			
+					   			url='http://twitter.com/intent/tweet'><i class="fab fa-twitter"></i>
 
-					   			/>   		
+					   			</p>   		
 							<DisplayData quoteData ={random}/>
 						</div>
 				 	</div>
