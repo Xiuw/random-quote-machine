@@ -1,88 +1,55 @@
 import React, { Component } from 'react';
-import DisplayData from './DisplayData';
+import DisplayData from './components/DisplayData';
 import { SocialIcon } from 'react-social-icons';
+import SubmitNewQuote from './components/SubmitNewQuote';
 import './App.css';
-
 
 class App extends Component{
 
 	constructor(){
 		super();
 		this.state= {
-			data:[],
-			inputQuote:'',
-			inputAuthor:'',
-			random:Math.floor(Math.random() * 10),
+			random:[],
 			route:'main',
-			message:'',
-			fadeIn:false,
-			
+			fadeIn:false,	
 		}	
 	} 
-	componentDidMount(){ //fetch data from the database
+	componentDidMount(){ //get a quote from the database (random quote will be handle on the server side of the database)
 		fetch('https://intense-reef-85189.herokuapp.com/getQuote')
 		.then(response=>response.json())
 		.then(data=> {
-			this.setState({data})
+			this.setState({random:data})
 		})
 	}
 
-	handleClick = () =>{	//handle random, get new random number if random is same as previous one
-	 	let random =  Math.floor(Math.random() * this.state.data.length);
-		 	do{
-		 	 random =  Math.floor(Math.random() * this.state.data.length);
-		 	}while(random === this.state.random)
- 		this.setState({random:random, fadeIn:true
- 		});  
+	onHandleGenerate = () =>{//handle generate new quote button to get a new random quote
+ 		fetch('https://intense-reef-85189.herokuapp.com/getQuote')
+		.then(response=>response.json())
+		.then(data=> { 
+			console.log(data.id);
+			if(data.id === this.state.random.id){
+				this.onHandleGenerate(); //function will be call again if server generate the same quote as the previous
+			}else{
+				this.setState({random:data,fadeIn:true})	
+			}	
+		})
 	 }
-
-	onHandleChange=(e)=>{
-		const {name,value} = e.target
-		this.setState({[name]:value, message:''});
-	}
-
-	onHandleSubmit = (e) => { //Handle submit new quote to the database
-		fetch('https://intense-reef-85189.herokuapp.com/submitQuote',{
-			method:'post',
-			headers:{'Content-Type':'Application/json'},
-			body:JSON.stringify({
-				quote:this.state.inputQuote,
-				author:this.state.inputAuthor
-			})
-		}).then(response => response.json())
-		.then(data=>console.log(data));
-		this.setState({
-			route:'other',
-			inputQuote:'',
-			inputAuthor:'',
-			message:'**Your quote has been sucessfully submitted, you can choose to return or submit a new quote.'
-		})
-	}
-	onHandleRoute=(e)=>{
-		const {route} = this.state;
-		if(route === 'main' || route ==='other'){
-			this.setState({route:'submit'});
-		}
-		else if(route ==='submit'){
-			this.setState({route:'main'});
+	onHandleRoute=(e)=>{ //handle route change 
+		if(this.state.route === 'main'){
+			this.setState({route:'form'});
 		}else {
-			this.setState({route:'other'});
+			this.setState({route:'main'});
 		}
-	}
-
-	 
+	}	 
 	render() {
-	  	const{random , inputQuote, inputAuthor,route,message,fadeIn} = this.state;
-	  	const filteredQuote = this.state.data.filter((n,i )=> i===random ? n : null);
-	 
+	  	const{random ,route,fadeIn} = this.state;
 	    return (
 	    <div className='App'> 
 	    	{
-	    	route === 'main' ? //condition statement which page to render(main or submit form)
+	    	route === 'main' ? //condition statement which page to render(main page or form page)
 	    	<div>
-	    	
 		    	<div id='quote-box'>
-		    		<p className='nav' onClick={this.onHandleRoute}>Share a new quote</p>
+		    	<p className='nav' onClick={this.onHandleRoute}>Submit a new quote</p>
 			   		<div className='quoteCSS'>
 			   			<div 
 			   			className={fadeIn?'effect_fade':''}
@@ -95,63 +62,24 @@ class App extends Component{
 					   			network="twitter" 
 					   			url='http://twitter.com/intent/tweet'
 
-					   			/>
-				   		
-							<DisplayData   quoteData ={filteredQuote}/>
+					   			/>   		
+							<DisplayData quoteData ={random}/>
 						</div>
 				 	</div>
 				 	 
-				 	<p><button 
-					 	id='new-quote' 
+				 	<div> 
+				 	<p id='new-quote' 
 					 	className = 'btn-quote' 
-					 	onClick={this.handleClick}>New Quote
-				 	</button></p>
-
+					 	onClick={this.onHandleGenerate}>Generate new Quote
+				 	</p>
+				 	</div>
 			  	</div>	
-		
 		  	</div>
 		  	:
-		  	<div>
-		      	
-		    	<div className='formCSS'>
-		    	<p className='nav'onClick={this.onHandleRoute}> Return to main</p>
-		    	<p className="msg">{message}</p>	
-		    	 	<p>*Submit your quote information below....</p>
-		    	 	
-		    	 	<div className ='input-section'>
-			    		<label>Quote:</label>
-				     	<textarea 
-				     		className ='inputArea'
-				     		name='inputQuote' 
-				     		value ={inputQuote} 
-				     		type='text' 
-				     		rows='6' cols='60'
-				     		onChange={this.onHandleChange}
-				     	/>
-			     	</div>
-				     <div className ='input-section' >
-				     	<label>Author or Source:</label>
-				     	<input 
-				     		className='inputArea' 
-				     		type='text' 
-				     		name ='inputAuthor' 
-				     		value={inputAuthor} 
-				     		onChange={this.onHandleChange} 
-			     		/>
-			     	</div>
-			     	<div>
-			     	<button className='btn-quote'onClick={this.onHandleSubmit}>Submit</button>
-					</div>
-		      	</div>
-		     
-		     </div>
-
-		     
+		  	<SubmitNewQuote handleRoute={this.onHandleRoute}/>   
 	    	} 
 		 </div> 
 	    );
 	  }
-
 }
-
 export default App;
