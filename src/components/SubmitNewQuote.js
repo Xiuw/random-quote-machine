@@ -11,7 +11,7 @@ class SubmitNewQuote extends Component {
 	 } 	
 	onHandleChange=(e)=>{
 		const {name,value} = e.target
-		this.setState({[name]:value});
+		this.setState({[name]:value,message:''});
 	}
 	onHandleSubmit = (e) => { //Handle submit new quote to the database
 		if(this.state.inputQuote.length <=10 || this.state.inputAuthor.length <=1){
